@@ -24,6 +24,23 @@ public class Cart
         }
     }
 
+    public void Remove(Product product)
+    {
+        if (!_quantities.ContainsKey(product))
+        {
+            return;
+        }
+
+        if (_quantities[product] > 1)
+        {
+            _quantities[product] -= 1;
+        }
+        else
+        {
+            _quantities.Remove(product);
+        }
+    }
+
     private static int LineTotalInPence(Product product, int quantity)
     {
         int fullPrice = product.PriceInPence * quantity;

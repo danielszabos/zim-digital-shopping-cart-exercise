@@ -135,4 +135,41 @@ public class CartTests
 
         Assert.Equal(expectedTotal, cart.TotalInPence);
     }
+
+    [Fact]
+    public void RemovingOneOfTwoPens_LeavesOnePenAtFullPrice()
+    {
+        var cart = new Cart();
+        cart.Add(Pen);
+        cart.Add(Pen);
+
+        cart.Remove(Pen);
+
+        Assert.Equal(1, cart.ItemCount);
+        Assert.Equal(120, cart.TotalInPence);
+    }
+
+    [Fact]
+    public void RemovingTheLastOfAProduct_RemovesItsLine()
+    {
+        var cart = new Cart();
+        cart.Add(Pen);
+
+        cart.Remove(Pen);
+
+        Assert.Empty(cart.Lines);
+        Assert.Equal(0, cart.ItemCount);
+    }
+
+    [Fact]
+    public void RemovingAProductNotInTheCart_LeavesTheCartUnchanged()
+    {
+        var cart = new Cart();
+        cart.Add(Pen);
+
+        cart.Remove(Mug);
+
+        Assert.Equal(1, cart.ItemCount);
+        Assert.Equal(120, cart.TotalInPence);
+    }
 }
