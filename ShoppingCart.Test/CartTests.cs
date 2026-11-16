@@ -47,4 +47,33 @@ public class CartTests
 
         Assert.Equal(3, cart.ItemCount);
     }
+
+    [Fact]
+    public void EmptyCart_TotalIsZero()
+    {
+        var cart = new Cart();
+
+        Assert.Equal(0, cart.TotalInPence);
+    }
+
+    [Fact]
+    public void OneMug_TotalIsSixPounds()
+    {
+        var cart = new Cart();
+
+        cart.Add(Mug);
+
+        Assert.Equal(600, cart.TotalInPence);
+    }
+
+    [Fact]
+    public void OnePenAndOneMug_TotalIsSumOfPrices()
+    {
+        var cart = new Cart();
+
+        cart.Add(Pen);
+        cart.Add(Mug);
+
+        Assert.Equal(720, cart.TotalInPence);
+    }
 }

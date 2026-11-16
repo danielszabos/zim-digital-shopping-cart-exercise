@@ -8,6 +8,8 @@ public class Cart
 
     public int ItemCount => _quantities.Values.Sum();
 
+    public int TotalInPence => _quantities.Sum(line => line.Key.PriceInPence * line.Value);
+
     public void Add(Product product)
     {
         if (_quantities.ContainsKey(product))
