@@ -4,6 +4,8 @@ public class Cart
 {
     private readonly Dictionary<Product, int> _quantities = new();
 
+    public IReadOnlyDictionary<Product, int> Lines => _quantities.AsReadOnly();
+
     public int ItemCount => _quantities.Values.Sum();
 
     public void Add(Product product)
