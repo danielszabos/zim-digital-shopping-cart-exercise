@@ -9,4 +9,19 @@ public class CartTests
 
         Assert.Equal(0, cart.ItemCount);
     }
+
+    [Fact]
+    
+    public void AddingOneProduct_ItemCountIsOne()
+    {
+        
+        var pen = new Product("PEN", "Pen", 120);
+
+        var cart = new Cart();
+
+        cart.Add(pen);
+        
+
+        Assert.Equal(1, cart.ItemCount);
+    }
 }
